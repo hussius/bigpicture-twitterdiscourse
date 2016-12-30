@@ -1,0 +1,3 @@
+networkx
+gensim
+regex
