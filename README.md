@@ -8,17 +8,21 @@ You also need to have a working installation of Infomap (http://www.mapequation.
 The first script, 0_make_mentiongraph.py, is not meant to be run unless necessary. It is used to process a large number of tweets to generate a networkx graph, which is stored as a pickle file.
 Example call:
 
-```python 0_make_mentiongraph.py small small_graph```
+```python 0_make_mentiongraph.py tweet_dir my_graph```
 
-... where "small" (in this example) is the name of a directory containing user tweets, one file per account named <username>.txt, containing tweets for that user, and "small_graph" is the prefix of the pickle file that will store the generated graph.
+... where "tweet_dir" (in this example) is the name of a directory containing user tweets, one file per account named <username>.txt, containing tweets for that user, and "my_graph" is the prefix of the pickle file that will store the generated graph.
 
 We will provide "ready-made" pickle files so that you should hopefully be able to skip this step.
 
 The second script, 1_pickle_to_communities.py, does the actual community detection analysis by using Infomap. 
 
-```python 1_pickle_to_communities.py small_graph```
+```python 1_pickle_to_communities.py my_graph.pickle```
 
-... where again "small_graph" is the prefix of the pickle file containing the graph, so that this script will load a file called "small_graph.pickle".
+If you download the [pickle file linked from the blog post](https://www.dropbox.com/s/xy9lkcdq9srbf2b/undirected_g_2015.pickle?dl=0), you should be able to do:
+
+```python 1_pickle_to_communities.py undirected_g_2015.pickle```
+
+directly on that, however, note that Python 3 is probably needed for that (I think this pickle format is not supported by Python 2).
 
 The third script, 2_content_analysis.py, calculates the most distinctive words for each of the largest communities (using TF-IDF) and gives some information on each cluster.
 
