@@ -91,8 +91,8 @@ print("Making TF-IDF model")
 tfidf = models.TfidfModel(corpus)
 
 for clu in range(0,nclus):
-#    print("Cluster ", biggestClusters[clu][0], biggestClusters[clu][1][:5])
-    print("Cluster ", selectedClusters[clu][0], selectedClusters[clu][1][:5])
+    print("Cluster ", biggestClusters[clu][0], biggestClusters[clu][1][:5])
+    #print("Cluster ", selectedClusters[clu][0], selectedClusters[clu][1][:5])
     print("=========")
     textInputList = texts[clu]
     subset_tfidf = tfidf[dictionary.doc2bow(textInputList)]
