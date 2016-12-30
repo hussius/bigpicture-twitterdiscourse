@@ -13,6 +13,7 @@ We will provide "ready-made" pickle files so that you should hopefully be able t
 The second script, 1_pickle_to_communities.py, does the actual community detection analysis by using Infomap. 
 
 ```python 1_pickle_to_communities.py small_graph```
+
 The third script, 2_content_analysis.py, calculates the most distinctive words for each of the largest communities (using TF-IDF) and gives some information on each cluster.
 
 ```python 2_content_analysis.py small small_graph_trees```
