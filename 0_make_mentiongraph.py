@@ -1,23 +1,21 @@
 import os
 import sys
 import networkx as nx
-import pandas as pd
 import regex
 import pickle
 from collections import Counter
-# My addition
 from glob import glob
- 
-#inpath = "/Users/mos/twitterdb/2015_totalUsertweets/"
-#files_2015 = pickle.load(open("./files_2015.pickle","rb")) # totalUsertweet-files >10 rows in ~/twitterdb/2015_totalUsertweets
 
-# Assume that files_2015 is a list of file names in inpath
-inpath = sys.argv[1] + '/' #"./small/"
+if len(sys.argv) < 3:
+    sys.exit('python ' + sys.argv[0] + ' <path to directory of tweet files> <name of graph to write to file>')
+
+# inpath should point to a directory containing *.txt files where each file is named after an account and contains tweets from that account
+inpath = sys.argv[1] + '/' 
 graph_name = sys.argv[2]
 files = [os.path.basename(x) for x in glob(inpath+'/*.txt')]
 screen_names = set([name[:-4] for name in files])
 print("Number of accounts: ", len(screen_names))
-#regex_2015 = regex.compile(r'2015-') # Skipping this requirement - probably Mattias had date info on each tweet
+#regex_2015 = regex.compile(r'2015-') 
 mention_pattern = regex.compile(r'@(\w+)')
 
 G = nx.DiGraph() 
