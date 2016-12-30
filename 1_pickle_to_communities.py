@@ -6,16 +6,22 @@ import pickle
 import operator
 import subprocess
 
+if len(sys.argv) < 2:
+    sys.exit('python ' + sys.argv[0] + ' <base name of pickle file (i e without the .pickle suffix)>')
+
+## Change this!
+infomap_path='/Users/mikaelhuss/apps/infomap/Infomap'
+
 # Read pickle file
 base=sys.argv[1]
 print('Reading file...')
 pkl = base + '.pickle'
-# It should be an undirected graph
+# Read undirected graph
 gd = pickle.load(open(pkl,"rb"))
 # Convert to undirected reciprocal graph
 print('Converting to reciprocal...')
 gud = gd.to_undirected(reciprocal=True)
-# Convert to numbered edges!
+# Convert to numbered edges
 numbered = {}
 counter = 0
 outf = open('numeric_edgelist.txt','w')
@@ -43,7 +49,7 @@ try:
 except:
     print("Directory exists? Proceeding...")
 
-subprocess.call(['/Users/mikaelhuss/apps/infomap/Infomap', '-z', '-2', '-u', 'numeric_edgelist.txt', tree_dir])
+subprocess.call([infomap_path, '-z', '-2', '-u', 'numeric_edgelist.txt', tree_dir])
 
 # Assign names to nodes
 tfile = open(tree_dir + "/numeric_edgelist.tree")

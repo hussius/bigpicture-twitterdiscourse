@@ -4,9 +4,9 @@ import os
 import sys
 
 if len(sys.argv) < 3:
-    sys.exit('python content_analysis.py <user tweet file dir> <infomap tree file>')
+    sys.exit('python ' + sys.argv[0] + ' <user tweet file dir> <infomap tree file>')
 
-nclus = 15
+nclus = 10
 
 clusterId = {} # dictionary for looking up cluster ID for user ID
 userId = {} # dictionary for looking up user IDs for a certain cluster ID
@@ -34,7 +34,7 @@ biggestClusters = clusBySize[0:nclus]
 userTweets = {}
 textPath = sys.argv[1]
 
-# If you want the work with certain selected clusters
+# If you want to work with certain selected clusters
 #sel = ['1','4']
 
 #selectedClusters = []
