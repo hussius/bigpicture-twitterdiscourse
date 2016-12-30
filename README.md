@@ -16,6 +16,8 @@ We will provide "ready-made" pickle files so that you should hopefully be able t
 
 The second script, 1_pickle_to_communities.py, does the actual community detection analysis by using Infomap. 
 
+*NOTE!* For this script to work, you must change the path to the Infomap executable in the code!
+
 ```python 1_pickle_to_communities.py my_graph.pickle```
 
 If you download the [pickle file linked from the blog post](https://www.dropbox.com/s/xy9lkcdq9srbf2b/undirected_g_2015.pickle?dl=0), you should be able to do:
