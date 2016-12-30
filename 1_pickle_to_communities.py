@@ -7,20 +7,24 @@ import operator
 import subprocess
 
 if len(sys.argv) < 2:
-    sys.exit('python ' + sys.argv[0] + ' <base name of pickle file (i e without the .pickle suffix)>')
+    sys.exit('python ' + sys.argv[0] + ' <name of pickle file>')
 
 ## Change this!
-infomap_path='/Users/mikaelhuss/apps/infomap/Infomap'
-
+infomap_path='/Users/mikaelhuss1/infomap/Infomap'
 # Read pickle file
-base=sys.argv[1]
+pkl=sys.argv[1]
 print('Reading file...')
-pkl = base + '.pickle'
-# Read undirected graph
-gd = pickle.load(open(pkl,"rb"))
-# Convert to undirected reciprocal graph
-print('Converting to reciprocal...')
-gud = gd.to_undirected(reciprocal=True)
+base = pkl.split('.pickle')[0]
+# Read graph
+g = pickle.load(open(pkl,"rb"))
+# Check if it is directed
+if 'DiGraph' in str(type(g)):
+    # Convert to undirected reciprocal graph
+    print('Converting to reciprocal...')
+    gud = g.to_undirected(reciprocal=True)
+else:
+    # Don't need to convert
+    gud = g
 # Convert to numbered edges
 numbered = {}
 counter = 0
